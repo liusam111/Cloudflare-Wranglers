@@ -2,11 +2,13 @@ addEventListener('fetch', event => {
   event.respondWith(handleRequest(event.request))
 })
 
+//Returns 0 or 1
 function getRandomIndex(){
   return Math.floor(Math.random() * 2);
 }
 
 
+//Cookie format is "name=value; MaxValue=value"
 function getCookie(request, name){
   let result = null;
   let cookieString = request.headers.get("Cookie");
@@ -58,7 +60,6 @@ async function handleRequest(request) {
 
 
       let cookie = getCookie(request, "prevPage"); //Cookie is either 0 or 1
-      console.log(cookie === null)
       cookie = cookie === null ? getRandomIndex() : cookie;
 
 
