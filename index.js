@@ -1,3 +1,5 @@
+const COOKIE_DURATION_1_WEEK = 604800;
+
 addEventListener('fetch', event => {
   event.respondWith(handleRequest(event.request))
 })
@@ -68,7 +70,7 @@ async function handleRequest(request) {
       newResponse = new Response(newResponse.body, newResponse);
 
       //Sets cookie if it doesn't exist, refresh duration if it does
-      newResponse.headers.set("Set-Cookie", `prevPage=${cookie}; Max-Age=2147483647`);
+      newResponse.headers.set("Set-Cookie", `prevPage=${cookie}; Max-Age=${COOKIE_DURATION_1_WEEK}`);
 
       return htmlRewriters[cookie].transform(newResponse);
       
